@@ -36,8 +36,18 @@ def lists():
     tally_left = todos.find({"done": "no"}).count()
     price_incoming = 6
     price_outgoing = 56
-    next_donor = todos.find({'done': 'no'}).sort(
-        "date", ASCENDING).limit(1)[0]['name']
+    next_donor_name = todos.find({'done': 'no'}).sort(
+        "date", ASCENDING).limit(1)
+    if(next_donor_name.count() > 0):
+        next_donor_name = next_donor_name[0]['name']
+    else:
+        next_donor_name = "N/A"
+    next_donor_id = todos.find({'done': 'no'}).sort(
+        "date", ASCENDING).limit(1)
+    if(next_donor_id.count() > 0):
+        next_donor_id = next_donor_id[0]['_id']
+    else:
+        next_donor_id = ""
     return render_template('index.html',
                            a1=a1,
                            todos=todos_l,
@@ -50,7 +60,8 @@ def lists():
                            tally_left=tally_left,
                            money_incoming=tally*price_incoming,
                            money_outgoing=tally_done*price_outgoing,
-                           next_donor=next_donor
+                           next_donor_name=next_donor_name,
+                           next_donor_id=next_donor_id
                            )
 
 
@@ -85,22 +96,31 @@ def completed():
     return render_template('index.html', a3=a3, todos=todos_l, t=title, h=heading)
 
 
-@ app.route("/done")
+@ app.route("/password")
+def password_prompt():
+    return render_template('password-prompt.html', t=title, h=heading)
+
+
+@ app.route("/done", methods=['GET', 'POST'])
 def done():
     # Done-or-not ICON
-    id = request.values.get("_id")
-    task = todos.find({"_id": ObjectId(id)})
-    if(task[0]["done"] == "yes"):
-        todos.update({"_id": ObjectId(id)}, {"$set": {"done": "no"}})
+    _id = request.values.get("_id")
+    password = request.values.get("password")
+    if password == "juice":
+        task = todos.find({"_id": ObjectId(_id)})
+        if(task[0]["done"] == "yes"):
+            todos.update({"_id": ObjectId(_id)}, {"$set": {"done": "no"}})
+        else:
+            todos.update({"_id": ObjectId(_id)}, {"$set": {"done": "yes"}})
+        # Re-directed URL i.e. PREVIOUS URL from where it came into this one
+        return redirect("./")
+
+    #	if(str(redir)=="http://localhost:5000/search"):
+    #		redir+="?key="+id+"&refer="+refer
+
     else:
-        todos.update({"_id": ObjectId(id)}, {"$set": {"done": "yes"}})
-    # Re-directed URL i.e. PREVIOUS URL from where it came into this one
-    redir = redirect_url()
+        return redirect(url_for('password_prompt', _id=_id))
 
-#	if(str(redir)=="http://localhost:5000/search"):
-#		redir+="?key="+id+"&refer="+refer
-
-    return redirect(redir)
 
 # @app.route("/add")
 # def add():

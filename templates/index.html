@@ -27,7 +27,12 @@
 	<h3>{{ tally_done }} completed, {{ tally_left }} left</h3>
 	<p>That means Carl has recieved {{money_incoming}}kr and spent approx {{money_outgoing}}kr at nation prices.</p>
 	<h2>Next up is...</h2>
-	<p>{{ next_donor }}</p>
+	<p>{{ next_donor_name }}</p>
+	{% if next_donor_id != "" %}
+	<p>
+		<a href="./done?_id={{ next_donor_id }}">Mark done</a>
+	</p>
+	{% endif %}
 	<h2>Top donators</h2>
 	<div span="right">
 		<table class="none" id="top_donators">
