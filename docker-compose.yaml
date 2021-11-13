@@ -22,6 +22,8 @@ services:
       - 27017:27017
     networks:
       - my-net
+    volumes:
+      - /opt/db:/data/db
 
 networks:
   my-net:
