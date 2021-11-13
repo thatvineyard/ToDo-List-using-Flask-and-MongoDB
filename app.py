@@ -67,10 +67,11 @@ def done ():
 def action ():
 	#Adding a Task
 	name=request.values.get("name")
-	desc=request.values.get("desc")
 	date=request.values.get("date")
 	pr=request.values.get("pr")
-	todos.insert({ "name":name, "desc":desc, "date":date, "pr":pr, "done":"no"})
+	password=request.values.get("password")
+	if password == "juice": 
+		todos.insert({ "name":name, "date":date, "done":"no"})
 	return redirect("/list")
 
 @app.route("/remove")
@@ -90,12 +91,17 @@ def update ():
 def action3 ():
 	#Updating a Task with various references
 	name=request.values.get("name")
-	desc=request.values.get("desc")
 	date=request.values.get("date")
-	pr=request.values.get("pr")
 	id=request.values.get("_id")
-	todos.update({"_id":ObjectId(id)}, {'$set':{ "name":name, "desc":desc, "date":date, "pr":pr }})
-	return redirect("/")
+	submit_action=request.values.get("button")
+	password=request.values.get("password")
+	if password == "juice": 
+		if submit_action == "update":
+			todos.update({"_id":ObjectId(id)}, {'$set':{ "name":name, "date":date}})
+		if submit_action == "delete":
+			todos.remove({"_id":ObjectId(id)})
+		return redirect("/")
+	return redirect(request.referrer)
 
 @app.route("/search", methods=['GET'])
 def search():
