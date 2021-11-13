@@ -12,8 +12,8 @@
 <body>
 	<h1>{{ h }}</h1>
 	<ul>
-		<li><a href="/list" class="{{ a1 }}">ALL</a></li>
-		<li><a href="/" class="{{ a2 }}">Uncompleted</a></li>
+		<li><a href="/" class="{{ a1 }}">ALL</a></li>
+		<li><a href="/uncompleted" class="{{ a2 }}">Uncompleted</a></li>
 		<li><a href="/completed" class="{{ a3 }}">Completed</a></li>
 		<li style="float:right"><a href="/about">About</a></li>
 	</ul>
@@ -23,6 +23,21 @@
 	</div>
 	{% endif %}
 	<hr>
+	<h2>Tally</h2>
+	<h3>{{ tally_done }} completed, {{ tally_left }} left</h3>
+	<h2>Top donators</h2>
+	<div span="right">
+		<table class="none" id="close">
+			<tr>
+				<td>1st: {{ top1 }}</td>
+				<td>2nd: {{ top2 }}</td>
+				<td>3rd: {{ top3 }}</td>
+			</tr>
+		</table>
+	</div>
+
+	<hr>
+	<!-- <h2>Search</h2>
 	{% if todos[0] %}
 	<div span="right">
 		<form action="/search" method="GET">
@@ -42,8 +57,9 @@
 				</tr>
 			</table>
 		</form>
-	</div>
-	<b><big>To-Do LIST :</big></b>
+	</div> -->
+
+	<h2>Donor list</h2>
 	<table>
 		<tr id="row">
 			<th class="status">Status</th>

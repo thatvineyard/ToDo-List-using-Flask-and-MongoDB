@@ -9,7 +9,7 @@ services:
     container_name: flask-app
     environment:
       - APP_ENV=development
-      - PORT=80
+      - PORT=5000
       - MONGO_HOST=mongo
       - MONGO_PORT=27017
     networks:
@@ -18,6 +18,7 @@ services:
       - mongo
     volumes:
       - ./:/app
+    restart: unless-stopped
 
   mongo:
     image: mvertes/alpine-mongo
