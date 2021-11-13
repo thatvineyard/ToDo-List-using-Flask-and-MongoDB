@@ -56,8 +56,8 @@
 		</tr>
 		{% for todo in todos %}
 		<tr class="datas">
-			<td><a href="./done?_id={{ todo['_id'] }}"></a><input type="image" src="static/images/{{todo['done']}}.png"
-					alt="Submit ME"></a></td>
+			<td><a href="./done?_id={{ todo['_id'] }}"><input type="image" src="static/images/{{todo['done']}}.png"
+						alt="Submit ME"></a></td>
 			<td class="name">{{ todo["name"] }}</td>
 			<!-- <td class="desc">{{ todo["desc"] }}</td> -->
 			<td class="date">{{ todo["date"] }}</td>

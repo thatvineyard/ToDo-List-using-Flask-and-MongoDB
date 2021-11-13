@@ -93,11 +93,12 @@ def action3 ():
 	name=request.values.get("name")
 	date=request.values.get("date")
 	id=request.values.get("_id")
+	done=request.values.get("done")
 	submit_action=request.values.get("button")
 	password=request.values.get("password")
 	if password == "juice": 
 		if submit_action == "update":
-			todos.update({"_id":ObjectId(id)}, {'$set':{ "name":name, "date":date}})
+			todos.update({"_id":ObjectId(id)}, {'$set':{ "name":name, "date":date, "done":done}})
 		if submit_action == "delete":
 			todos.remove({"_id":ObjectId(id)})
 		return redirect("/")
