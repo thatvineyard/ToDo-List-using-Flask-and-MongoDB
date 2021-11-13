@@ -36,6 +36,8 @@ def lists():
     tally_left = todos.find({"done": "no"}).count()
     price_incoming = 6
     price_outgoing = 56
+    next_donor = todos.find({'done': 'no'}).sort(
+        "date", ASCENDING).limit(1)[0]['name']
     return render_template('index.html',
                            a1=a1,
                            todos=todos_l,
@@ -47,7 +49,8 @@ def lists():
                            tally_done=tally_done,
                            tally_left=tally_left,
                            money_incoming=tally*price_incoming,
-                           money_outgoing=tally_done*price_outgoing
+                           money_outgoing=tally_done*price_outgoing,
+                           next_donor=next_donor
                            )
 
 
