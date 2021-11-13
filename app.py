@@ -1,6 +1,6 @@
 # For flask implementation
 from flask import Flask, render_template, request, redirect, url_for
-from pymongo import MongoClient  # Database connector
+from pymongo import ASCENDING, DESCENDING, MongoClient  # Database connector
 from bson.objectid import ObjectId  # For ObjectId to work
 from bson.errors import InvalidId  # For catching InvalidId exception for ObjectId
 import os
@@ -28,7 +28,7 @@ def redirect_url():
 @app.route("/list")
 def lists():
     # Display the all Tasks
-    todos_l = todos.find()
+    todos_l = todos.find().sort("date", ASCENDING)
     a1 = "active"
     top_list = top(3)
     return render_template('index.html',
@@ -62,7 +62,7 @@ def top(depth=3):
 @ app.route("/uncompleted")
 def tasks():
     # Display the Uncompleted Tasks
-    todos_l = todos.find({"done": "no"})
+    todos_l = todos.find({"done": "no"}).sort("date", ASCENDING)
     a2 = "active"
     return render_template('index.html', a2=a2, todos=todos_l, t=title, h=heading)
 
@@ -70,7 +70,7 @@ def tasks():
 @ app.route("/completed")
 def completed():
     # Display the Completed Tasks
-    todos_l = todos.find({"done": "yes"})
+    todos_l = todos.find({"done": "yes"}).sort("date", ASCENDING)
     a3 = "active"
     return render_template('index.html', a3=a3, todos=todos_l, t=title, h=heading)
 
