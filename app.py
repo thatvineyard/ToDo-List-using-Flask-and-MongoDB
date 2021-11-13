@@ -31,6 +31,11 @@ def lists():
     todos_l = todos.find().sort("date", ASCENDING)
     a1 = "active"
     top_list = top(3)
+    tally = todos.count()
+    tally_done = todos.find({"done": "yes"}).count()
+    tally_left = todos.find({"done": "no"}).count()
+    price_incoming = 6
+    price_outgoing = 56
     return render_template('index.html',
                            a1=a1,
                            todos=todos_l,
@@ -39,8 +44,10 @@ def lists():
                            top1=top_list[0],
                            top2=top_list[1],
                            top3=top_list[2],
-                           tally_done=todos.find({"done": "yes"}).count(),
-                           tally_left=todos.find({"done": "no"}).count(),
+                           tally_done=tally_done,
+                           tally_left=tally_left,
+                           money_incoming=tally*price_incoming,
+                           money_outgoing=tally_done*price_outgoing
                            )
 
 
