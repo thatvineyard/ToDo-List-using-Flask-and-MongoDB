@@ -7,6 +7,8 @@ body{
 	background-color:white;
 	left-margin:10px;
 	right-margin:10px;
+	padding: 0% 10%;
+	align-content: center;
 }
 table{
 	width:95%;
@@ -17,6 +19,8 @@ td
 {
 	border: rgba(224, 119, 70, 1) 1px solid;
 	word-wrap:break-word;
+	text-align: center;
+	margin: auto;
 }
 table#close{
 
@@ -34,6 +38,35 @@ table.none
 table.none td
 {
 	border: none;
+}
+div#new_form{
+	width: fit-content;
+	background-color: #333;
+	color: white;
+	padding:  2px 10px;
+	margin: 100px auto;
+}
+table#new_form
+{
+	border-width: 10px;
+	border:none;
+	vertical-align:top;
+	width: max-content;
+	/* margin: auto; */
+	/* align-content: center; */
+	padding: 5%;
+}
+table#top_donators
+{
+	width: auto;
+	margin:auto;
+}
+table#donor_list
+{
+	margin-bottom: 30px;
+}
+td.centered {
+	vertical-align: middle;
 }
 tr.row td{
 	text-decoration:italic;

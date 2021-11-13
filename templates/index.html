@@ -11,28 +11,44 @@
 
 <body>
 	<h1>{{ h }}</h1>
-	<ul>
+	<!-- <ul>
 		<li><a href="/" class="{{ a1 }}">ALL</a></li>
 		<li><a href="/uncompleted" class="{{ a2 }}">Uncompleted</a></li>
 		<li><a href="/completed" class="{{ a3 }}">Completed</a></li>
 		<li style="float:right"><a href="/about">About</a></li>
-	</ul>
+	</ul> -->
 	{% if error %}
 	<div class="alert alert-danger">
 		<strong>Error!</strong> {{ error }}
 	</div>
 	{% endif %}
-	<hr>
+	<!-- <hr> -->
 	<h2>Tally</h2>
 	<h3>{{ tally_done }} completed, {{ tally_left }} left</h3>
-	<p>That means Carl has recieved {{money_incoming}}kr and spend {{money_outgoing}}kr.</p>
+	<p>That means Carl has recieved {{money_incoming}}kr and spent approx {{money_outgoing}}kr at nation prices.</p>
 	<h2>Top donators</h2>
 	<div span="right">
-		<table class="none" id="close">
+		<table class="none" id="top_donators">
 			<tr>
-				<td>1st: {{ top1 }}</td>
-				<td>2nd: {{ top2 }}</td>
-				<td>3rd: {{ top3 }}</td>
+				<td></td>
+				<td>
+					<h3>1st: {{ top1 }}</h3>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>
+					<h4>2nd: {{ top2 }}</h4>
+				</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td>
+					<h5>3rd: {{ top3 }}</h5>
+				</td>
 			</tr>
 		</table>
 	</div>
@@ -61,7 +77,7 @@
 	</div> -->
 
 	<h2>Donor list</h2>
-	<table>
+	<table id="donor_list">
 		<tr id="row">
 			<th class="status">Status</th>
 			<th class="name">Donor</th>
@@ -89,34 +105,33 @@
 	</div>
 	{% endif %}
 	<hr />
-	<form action="/action" method="POST">
-		<table class="none">
-			<tr class="row success">
-				<td>
-					<h2>Add a Task</h2>
-				</td>
-			</tr>
-			<tr class="row">
-				<td class="col-2">
-					<input type="text" name="name" placeholder="Donor" />
-				</td>
-			</tr>
-			<tr class="row">
-				<td class="col-2">
-					<input type="date" name="date" placeholder="Date" />
-				</td>
-			</tr>
-			<tr class="row">
-				<td class="col-2">
-					<input type="password" name="password" placeholder="Password" />
-				</td>
-			</tr>
-			<tr class="row">
-				<td class="col-2">
-					<button type="submit"> Create </button>
-				</td>
-			</tr>
-	</form>
+	<br>
+	<div id="new_form">
+		<h2>Add a donation</h2>
+		<form action="/action" method="POST">
+			<table id="new_form" class="none">
+				<tr>
+					<td>
+						<input type="text" name="name" placeholder="Donor" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="date" name="date" placeholder="Date" style="width: 94%" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="password" name="password" placeholder="Password" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button type="submit"> Create </button>
+					</td>
+				</tr>
+		</form>
+	</div>
 	</table>
 	<script>
 
