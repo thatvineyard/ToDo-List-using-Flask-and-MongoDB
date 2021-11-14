@@ -8,7 +8,7 @@ body{
 	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 h1, h2, h3,
-h4, h5, h6, p {
+h4, h5, h6, p, small {
 	text-align: center;
 }
 small {
@@ -25,6 +25,11 @@ td
 	word-wrap:break-word;
 	text-align: center;
 	margin: auto;
+}
+table#header{
+	width:100%;
+	border-collapse:collapse;
+	table-layout:fixed;
 }
 table#close{
 
@@ -86,7 +91,7 @@ table#top_donators tr td.left {
 	font-size: 100%;
 }
 table#top_donators tr td.middle {
-	font-size: 110%;
+	font-size: 120%;
 }
 table#top_donators tr td.right {
 	font-size: 90%;

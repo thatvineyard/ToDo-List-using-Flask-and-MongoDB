@@ -7,11 +7,21 @@
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='assets/emoji.css')}}">
 	<script src="{{ url_for('static',filename='assets/twemoji.min.js')}}"></script>
 	<script src="{{ url_for('static',filename='assets/emoji.js')}}"></script>
+	<script>
+		window.addEventListener('load', function () {
+			var image = document.getElementById("question-mark");
+			var elem = document.getElementById('show');
+
+			image.addEventListener('click', function () {
+				elem.innerHTML = image.getAttribute('alt');
+			});
+		})
+	</script>
 </head>
 
 <body>
 	<div>
-		<table>
+		<table id="header">
 			<tr>
 				<td>
 					<img src="static/images/jonas.jpg">
@@ -41,6 +51,14 @@
 	<p>{{ tally_done }} completed, {{ tally_left }} left</p>
 	<h2>Next up is...</h2>
 	<p>{{ next_donor_name }}</p>
+	<p>
+		<img src="static/images/question.png"
+			alt="The app picks the donor who has waited the longest since they had one of their donations realized."
+			id="question-mark" style=" height: 0.8em;">
+	</p>
+	<p>
+		<small id="show"></small>
+	</p>
 	{% if next_donor_id != "" %}
 	<p>
 		<small><a href="./done?_id={{ next_donor_id }}">Mark done</a></small>

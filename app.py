@@ -37,15 +37,22 @@ def lists():
     tally_done = todos.find({"done": "yes"}).count()
     tally_left = todos.find({"done": "no"}).count()
     price_incoming = 6
+
     price_outgoing = 56
-    next_donor_name = todos.find({'done': 'no'}).sort(
-        "date", ASCENDING).limit(1)
-    if(next_donor_name.count() > 0):
-        next_donor_name = next_donor_name[0]['name']
+    completed_donors = todos.find({'done': 'yes'}).distinct('name')
+    incomplete_donations = todos.find({'done': 'no'}).sort(
+        "date", ASCENDING).distinct('name')
+    incomplete_donors = [
+        donor for donor in incomplete_donations if donor not in completed_donors]
+    if(len(incomplete_donors) > 0):
+        next_donor_name = incomplete_donors[0]
     else:
-        next_donor_name = "N/A"
-    next_donor_id = todos.find({'done': 'no'}).sort(
-        "date", ASCENDING).limit(1)
+        if(len(incomplete_donations) > 0):
+            next_donor_name = incomplete_donations[0]
+        else:
+            next_donor_name = "The list is empty!"
+    next_donor_id = todos.find({'done': 'no'}, {'name': next_donor_name}).sort(
+        "date", ASCENDING)
     if(next_donor_id.count() > 0):
         next_donor_id = next_donor_id[0]['_id']
     else:
