@@ -1,14 +1,15 @@
-h1{
-/*	font-family:"Arial Black", Gadget, sans-serif;*/
-	font-family:"Times New Romans", Gadget, sans-serif;
-}
 body{
 	color:black;
-	background-color:white;
+	background-color:rgb(248, 242, 232);
 	left-margin:10px;
 	right-margin:10px;
 	padding: 0% 10%;
 	align-content: center;
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+h1, h2, h3,
+h4, h5, h6, p {
+	text-align: center;
 }
 table{
 	width:95%;
@@ -56,11 +57,38 @@ table#new_form
 	/* align-content: center; */
 	padding: 5%;
 }
+
+/* Top donators */
 table#top_donators
 {
+	color: white;
 	width: auto;
 	margin:auto;
+	width: 60%;
 }
+table#top_donators tr td
+{
+	width: 30%;
+}
+table#top_donators tr td.left.under {
+	background-color: #302e28;
+}
+table#top_donators tr td.middle.under {
+	background-color: #4e4c42;
+}
+table#top_donators tr td.right.under {
+	background-color: #141411;
+}
+table#top_donators tr td.left {
+	font-size: 100%;
+}
+table#top_donators tr td.middle {
+	font-size: 110%;
+}
+table#top_donators tr td.right {
+	font-size: 90%;
+}
+
 /* Donor table */
 table#donor_list
 {
@@ -73,14 +101,18 @@ table#donor_list tr:first-child th
 }
 table#donor_list tr:nth-child(even)
 {
-	background:#c1dbf0;
+	background:#f3f1e3;
 }
 table#donor_list tr:nth-child(odd)
 {
-	background:#dae6f1;
+	background:#f1ecda;
+}
+table#donor_list tr.done
+{
+	color: grey;
 }
 td.centered {
-	vertical-align: middle;
+	vertical-align: middle;	
 }
 tr.row td{
 	text-decoration:italic;
@@ -132,7 +164,7 @@ td.date, td.pr, td.func1, td.func2 {
 .col-12 { width: 100%; }
 
 button[type=submit] {
-	background-color: #428bca;
+	background-color: #5a5a47;
 	border: none;
 	color: white;
 	border-radius: 15px 15px;

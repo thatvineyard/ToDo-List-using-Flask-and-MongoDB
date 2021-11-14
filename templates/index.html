@@ -24,8 +24,7 @@
 	{% endif %}
 	<!-- <hr> -->
 	<h2>Tally</h2>
-	<h3>{{ tally_done }} completed, {{ tally_left }} left</h3>
-	<p>That means Carl has recieved {{money_incoming}}kr and spent approx {{money_outgoing}}kr at nation prices.</p>
+	<p>{{ tally_done }} completed, {{ tally_left }} left</p>
 	<h2>Next up is...</h2>
 	<p>{{ next_donor_name }}</p>
 	{% if next_donor_id != "" %}
@@ -37,25 +36,30 @@
 	<div span="right">
 		<table class="none" id="top_donators">
 			<tr>
-				<td></td>
-				<td>
-					<h3>1st: {{ top1 }}</h3>
+				<td class="left"></td>
+				<td class="middle under">
+					<p>{{ top1 }}</p>
 				</td>
-				<td></td>
+				<td class="right"></td>
 			</tr>
 			<tr>
-				<td>
-					<h4>2nd: {{ top2 }}</h4>
+				<td class="left under">
+					<p>{{ top2 }}</p>
 				</td>
-				<td></td>
-				<td></td>
+				<td class="middle under"></td>
+				<td class="right"></td>
 			</tr>
 			<tr>
-				<td></td>
-				<td></td>
-				<td>
-					<h5>3rd: {{ top3 }}</h5>
+				<td class="left under"></td>
+				<td class="middle under"></td>
+				<td class="right under">
+					<p>{{ top3 }}</p>
 				</td>
+			</tr>
+			<tr>
+				<td class="left under">2nd</td>
+				<td class="middle under">1st</td>
+				<td class="right under">3rd</td>
 			</tr>
 		</table>
 	</div>
@@ -95,7 +99,7 @@
 			<th class="func2">Modify</th>
 		</tr>
 		{% for todo in todos %}
-		<tr class="datas">
+		<tr class="datas {% if todo['done'] == 'yes' %}done{% endif %}">
 			<td><input type="image" src="static/images/{{todo['done']}}.png" alt="Submit ME"></td>
 			<td class="name">{{ todo["name"] }}</td>
 			<!-- <td class="desc">{{ todo["desc"] }}</td> -->
@@ -111,6 +115,8 @@
 		<h4>No Tasks in the List !!</h4>
 	</div>
 	{% endif %}
+	<p><small>That means Carl has recieved {{money_incoming}}kr and spent approx {{money_outgoing}}kr at nation
+			prices.</small></p>
 	<hr />
 	<br>
 	<div id="new_form">
@@ -124,7 +130,7 @@
 				</tr>
 				<tr>
 					<td>
-						<input type="date" name="date" placeholder="Date" style="width: 94%" />
+						<input type="date" name="date" value="{{ today }}" style="width: 94%" />
 					</td>
 				</tr>
 				<tr>

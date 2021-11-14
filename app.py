@@ -3,6 +3,8 @@ from flask import Flask, render_template, request, redirect, url_for
 from pymongo import ASCENDING, DESCENDING, MongoClient  # Database connector
 from bson.objectid import ObjectId  # For ObjectId to work
 from bson.errors import InvalidId  # For catching InvalidId exception for ObjectId
+from datetime import datetime
+
 import os
 
 mongodb_host = os.environ.get('MONGO_HOST', 'localhost')
@@ -61,7 +63,8 @@ def lists():
                            money_incoming=tally*price_incoming,
                            money_outgoing=tally_done*price_outgoing,
                            next_donor_name=next_donor_name,
-                           next_donor_id=next_donor_id
+                           next_donor_id=next_donor_id,
+                           today=datetime.date(datetime.now())
                            )
 
 
