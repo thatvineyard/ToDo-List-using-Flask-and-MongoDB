@@ -11,6 +11,11 @@ h1, h2, h3,
 h4, h5, h6, p, small {
 	text-align: center;
 }
+p.column {
+	width: 60%;
+	min-width: 400px;
+	margin: auto;
+}
 small {
 	font-size: 50%;
 }
@@ -49,7 +54,8 @@ table.none td
 	border: none;
 }
 div#new_form{
-	width: fit-content;
+	width: 20%;
+	min-width: 200px;
 	background-color: #333;
 	color: white;
 	padding:  2px 10px;
@@ -61,8 +67,7 @@ table#new_form
 	border:none;
 	vertical-align:top;
 	width: max-content;
-	/* margin: auto; */
-	/* align-content: center; */
+	margin: auto;
 	padding: 5%;
 }
 
