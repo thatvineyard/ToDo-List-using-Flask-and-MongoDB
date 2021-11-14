@@ -61,9 +61,23 @@ table#top_donators
 	width: auto;
 	margin:auto;
 }
+/* Donor table */
 table#donor_list
 {
 	margin-bottom: 30px;
+}
+table#donor_list tr:first-child th
+{
+	background:#0f1113;
+	color: white;
+}
+table#donor_list tr:nth-child(even)
+{
+	background:#c1dbf0;
+}
+table#donor_list tr:nth-child(odd)
+{
+	background:#dae6f1;
 }
 td.centered {
 	vertical-align: middle;
