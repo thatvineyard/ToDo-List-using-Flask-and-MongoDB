@@ -21,7 +21,7 @@ table{
 }
 td
 {
-	border: rgba(224, 119, 70, 1) 1px solid;
+	/* border: rgba(224, 119, 70, 1) 1px solid; */
 	word-wrap:break-word;
 	text-align: center;
 	margin: auto;
@@ -104,11 +104,11 @@ table#donor_list tr:first-child th
 }
 table#donor_list tr:nth-child(even)
 {
-	background:#f3f1e3;
+	background:#dfddd2;
 }
 table#donor_list tr:nth-child(odd)
 {
-	background:#f1ecda;
+	background:rgb(211, 207, 194);
 }
 table#donor_list tr.done
 {
