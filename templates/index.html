@@ -64,13 +64,13 @@
 				<p>
 					<small id="show"></small>
 				</p>
+				<p>
+					<small><a href="./done?_id={{ next_donor_id }}">Mark done</a></small>
+				</p>
 			</td>
 		</tr>
 	</table>
 	{% if next_donor_id != "" %}
-	<p>
-		<small><a href="./done?_id={{ next_donor_id }}">Mark done</a></small>
-	</p>
 	{% endif %}
 	<table class="none" id="top_donators">
 		<th colspan=3>
@@ -127,21 +127,27 @@
 		</form>
 	</div> -->
 	<table id="donor_list">
-		<tr colspan=4>
-			<h2>Donor list</h2>
+		<tr class="title">
+			<td colspan=4>
+				<h2>Donor list</h2>
+			</td>
 		</tr>
-		<tr class="header" id="row">
-			<th class="status">Status</th>
-			<th class="name">Donor</th>
-			<!-- <th class="desc">Description Name</th> -->
-			<th class="date">Date</th>
-			<!-- <th class="pr">Priority</th> -->
-			<!-- <th class="func1">Remove</th> -->
-			<th class="func2">Modify</th>
-		</tr>
+		<!-- <tr class="header" id="row"> -->
+		<!-- <th class="status">Status</th> -->
+		<!-- <th class="name">Donor</th> -->
+		<!-- <th class="desc">Description Name</th> -->
+		<!-- <th class="date">Date</th> -->
+		<!-- <th class="pr">Priority</th> -->
+		<!-- <th class="func1">Remove</th> -->
+		<!-- <th class="func2">Modify</th> -->
+		<!-- </tr> -->
 		{% for todo in todos %}
 		<tr class="datas {% if todo['done'] == 'yes' %}done{% endif %}">
-			<td><input type="image" src="static/images/{{todo['done']}}.png" alt="Submit ME"></td>
+			<td>
+				<a href="./done?_id={{ todo['_id'] }}">
+					<img src="static/images/{{todo['done']}}.png" alt="Mark done">
+				</a>
+			</td>
 			<td class="name">{{ todo["name"] }}</td>
 			<!-- <td class="desc">{{ todo["desc"] }}</td> -->
 			<td class="date">{{ todo["date"] }}</td>

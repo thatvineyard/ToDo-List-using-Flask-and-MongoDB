@@ -26,7 +26,7 @@ small {
 	font-size: 50%;
 }
 table{
-	width:95%;
+	width: 95%;
 	margin: auto;
 	border-collapse:collapse;
 	table-layout:fixed;
@@ -143,10 +143,18 @@ table#donor_list
 {
 	margin-bottom: 30px;
 }
+table#donor_list tr.title td
+{
+	background:rgb(248, 242, 232);
+	color: black;
+}
 table#donor_list tr.header th
 {
 	background:#0f1113;
 	color: white;
+}
+table#donor_list tr {
+	height: 50px;
 }
 table#donor_list tr:nth-child(even)
 {
