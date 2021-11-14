@@ -7,9 +7,15 @@ body{
 	align-content: center;
 	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+h1 {
+	size: 12px;
+}
 h1, h2, h3,
 h4, h5, h6, p, small {
 	text-align: center;
+}
+h1 {
+	font-size: 4vw;
 }
 p.column {
 	width: 60%;
@@ -21,6 +27,7 @@ small {
 }
 table{
 	width:95%;
+	margin: auto;
 	border-collapse:collapse;
 	table-layout:fixed;
 }
@@ -31,11 +38,7 @@ td
 	text-align: center;
 	margin: auto;
 }
-table#header{
-	width:100%;
-	border-collapse:collapse;
-	table-layout:fixed;
-}
+
 table#close{
 
 	table-layout:default;
@@ -53,6 +56,36 @@ table.none td
 {
 	border: none;
 }
+
+/* Header table */
+
+table#header{
+	width:80%;
+	border-collapse:collapse;
+	table-layout:fixed;
+}
+table#header tr{
+	height: 300px;
+}
+table#header td.image{    
+	width: 0;
+	min-width: fit-content;
+}
+
+
+/* Status table */
+table#status 
+{
+	/* color: white; */
+	width: auto;
+	margin: 50px auto auto auto;
+	width: 60%;
+}
+table#status tr
+{
+	vertical-align: top;
+}
+/* New form table */
 div#new_form{
 	width: 20%;
 	min-width: 200px;
@@ -78,6 +111,9 @@ table#top_donators
 	width: auto;
 	margin:auto;
 	width: 60%;
+}
+table#top_donators th{
+	color: black;
 }
 table#top_donators tr td
 {
@@ -107,7 +143,7 @@ table#donor_list
 {
 	margin-bottom: 30px;
 }
-table#donor_list tr:first-child th
+table#donor_list tr.header th
 {
 	background:#0f1113;
 	color: white;

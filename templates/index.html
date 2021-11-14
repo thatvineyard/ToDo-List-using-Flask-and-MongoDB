@@ -23,13 +23,13 @@
 	<div>
 		<table id="header">
 			<tr>
-				<td>
+				<td class="image">
 					<img src="static/images/jonas.jpg">
 				</td>
 				<td>
 					<h1>{{ h }}</h1>
 				</td>
-				<td>
+				<td class="image">
 					<img src="static/images/jonas.jpg">
 				</td>
 			</tr>
@@ -47,54 +47,62 @@
 	</div>
 	{% endif %}
 	<!-- <hr> -->
-	<h2>Tally</h2>
-	<p>{{ tally_done }} completed, {{ tally_left }} left</p>
-	<h2>Next up is...</h2>
-	<p>{{ next_donor_name }}</p>
-	<p>
-		<img src="static/images/question.png"
-			alt="The app picks the donor who has waited the longest since they had one of their donations realized."
-			id="question-mark" style=" height: 0.8em;">
-	</p>
-	<p>
-		<small id="show"></small>
-	</p>
+	<table id="status">
+		<tr>
+			<td>
+				<h2>Tally</h2>
+				<p>{{ tally_done }} completed, {{ tally_left }} left</p>
+			</td>
+			<td>
+				<h2>Next up is...</h2>
+				<p>{{ next_donor_name }}</p>
+				<p>
+					<img src="static/images/question.png"
+						alt="The app picks the donor who has waited the longest since they had one of their donations realized."
+						id="question-mark" style=" height: 0.8em;">
+				</p>
+				<p>
+					<small id="show"></small>
+				</p>
+			</td>
+		</tr>
+	</table>
 	{% if next_donor_id != "" %}
 	<p>
 		<small><a href="./done?_id={{ next_donor_id }}">Mark done</a></small>
 	</p>
 	{% endif %}
-	<h2>Top donators</h2>
-	<div span="right">
-		<table class="none" id="top_donators">
-			<tr>
-				<td class="left"></td>
-				<td class="middle under">
-					<p>{{ top1 }}</p>
-				</td>
-				<td class="right"></td>
-			</tr>
-			<tr>
-				<td class="left under">
-					<p>{{ top2 }}</p>
-				</td>
-				<td class="middle under"></td>
-				<td class="right"></td>
-			</tr>
-			<tr>
-				<td class="left under"></td>
-				<td class="middle under"></td>
-				<td class="right under">
-					<p>{{ top3 }}</p>
-				</td>
-			</tr>
-			<tr>
-				<td class="left under">2nd</td>
-				<td class="middle under">1st</td>
-				<td class="right under">3rd</td>
-			</tr>
-		</table>
-	</div>
+	<table class="none" id="top_donators">
+		<th colspan=3>
+			<h2>Top donators</h2>
+		</th>
+		<tr>
+			<td class="left"></td>
+			<td class="middle under">
+				<p>{{ top1 }}</p>
+			</td>
+			<td class="right"></td>
+		</tr>
+		<tr>
+			<td class="left under">
+				<p>{{ top2 }}</p>
+			</td>
+			<td class="middle under"></td>
+			<td class="right"></td>
+		</tr>
+		<tr>
+			<td class="left under"></td>
+			<td class="middle under"></td>
+			<td class="right under">
+				<p>{{ top3 }}</p>
+			</td>
+		</tr>
+		<tr>
+			<td class="left under">2nd</td>
+			<td class="middle under">1st</td>
+			<td class="right under">3rd</td>
+		</tr>
+	</table>
 
 	<hr>
 	<!-- <h2>Search</h2>
@@ -118,9 +126,10 @@
 			</table>
 		</form>
 	</div> -->
-
-	<h2>Donor list</h2>
 	<table id="donor_list">
+		<tr colspan=4>
+			<h2>Donor list</h2>
+		</tr>
 		<tr class="header" id="row">
 			<th class="status">Status</th>
 			<th class="name">Donor</th>
