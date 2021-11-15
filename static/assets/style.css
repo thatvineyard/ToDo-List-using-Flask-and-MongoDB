@@ -166,7 +166,7 @@ div#wheel_of_donors table
 div#wheel_of_donors table.spinning
 {
 	animation-name: horizontalcarousel;
-	animation-duration: 4s;
+	animation-duration: 10s;
 	animation-direction: alternate;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-out;
