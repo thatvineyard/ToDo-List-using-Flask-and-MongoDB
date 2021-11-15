@@ -138,6 +138,49 @@ table#top_donators tr td.right {
 	font-size: 90%;
 }
 
+/* Wheel of donors */
+@keyframes horizontalcarousel {
+  0%, 20%, 45% {
+		translate: 0% 0;
+	}
+  10%, 30% {
+		translate: -100% 0;
+	}
+}
+div#wheel_of_donors
+{
+	z-index: 2;
+	overflow: clip;
+	margin: auto;
+	width: 200px;
+	/* background: blue; */
+	background: linear-gradient(90deg, rgb(248, 242, 232) 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,0) 90%, rgb(248, 242, 232) 100%); 
+}
+
+div#wheel_of_donors table
+{
+	margin-left: 50%;
+	position: relative;
+	z-index: -1;
+}
+div#wheel_of_donors table.spinning
+{
+	animation-name: horizontalcarousel;
+	animation-duration: 4s;
+	animation-direction: alternate;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+}
+div#wheel_of_donors table tr td
+{
+	/* border:black;
+	border-style: solid;
+	background-color: rgb(179, 178, 159); */
+	width: 100px;
+	padding: 0 20px;
+}
+
 /* Donor table */
 table#donor_list
 {

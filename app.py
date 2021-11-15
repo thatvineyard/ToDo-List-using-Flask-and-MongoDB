@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from pymongo import ASCENDING, DESCENDING, MongoClient  # Database connector
 from bson.objectid import ObjectId  # For ObjectId to work
 from bson.errors import InvalidId  # For catching InvalidId exception for ObjectId
+import random
 from datetime import datetime
 
 import os
@@ -31,6 +32,9 @@ def redirect_url():
 def lists():
     # Display the all Tasks
     todos_l = todos.find().sort("date", ASCENDING)
+    todos_random = list(todos.find({'done': 'no'}))
+    random.shuffle(todos_random)
+    next_receiver_index = random.randint(0, len(todos_random))
     a1 = "active"
     top_list = top(3)
     tally = todos.count()
@@ -60,6 +64,7 @@ def lists():
     return render_template('index.html',
                            a1=a1,
                            todos=todos_l,
+                           todos_random=todos_random,
                            t=title,
                            h=heading,
                            top1=top_list[0],
@@ -71,6 +76,7 @@ def lists():
                            money_outgoing=tally_done*price_outgoing,
                            next_donor_name=next_donor_name,
                            next_donor_id=next_donor_id,
+                           next_receiver_index=next_receiver_index,
                            today=datetime.date(datetime.now())
                            )
 

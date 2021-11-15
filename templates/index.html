@@ -17,6 +17,39 @@
 			});
 		})
 	</script>
+	<script>
+		function findKeyframesRule(rule) {
+			// gather all stylesheets into an array
+			var ss = document.styleSheets;
+
+			// loop through the stylesheets
+			for (var i = 0; i < ss.length; ++i) {
+
+				// loop through all the rules
+				for (var j = 0; j < ss[i].cssRules.length; ++j) {
+
+					// find the -webkit-keyframe rule whose name matches our passed over parameter and return that rule
+					if (ss[i].cssRules[j].type == window.CSSRule.KEYFRAMES_RULE && ss[i].cssRules[j].name == rule)
+						return ss[i].cssRules[j];
+				}
+			}
+
+			// rule not found
+			return null;
+		}
+		landing_spot = (((({{ next_receiver_index }}+1)* 2) -1) / ({{todos_random | count }}*2) ) * -100
+		window.addEventListener('load', function () {
+			var div = document.getElementById('wheel_of_donors');
+			var table = document.getElementById('wheel_of_donors_table');
+
+			var keyframes = findKeyframesRule("horizontalcarousel");
+			keyframes.appendRule("100% {translate: " + landing_spot + "% 0;}");
+
+			div.addEventListener('click', function () {
+				table.classList.add("spinning");
+			});
+		})
+	</script>
 </head>
 
 <body>
@@ -47,6 +80,8 @@
 	</div>
 	{% endif %}
 	<!-- <hr> -->
+
+	<!-- Status table -->
 	<table id="status">
 		<tr>
 			<td>
@@ -64,14 +99,31 @@
 				<p>
 					<small id="show"></small>
 				</p>
+				{% if next_donor_id != "" %}
 				<p>
 					<small><a href="./done?_id={{ next_donor_id }}">Mark done</a></small>
 				</p>
+				{% endif %}
 			</td>
 		</tr>
 	</table>
-	{% if next_donor_id != "" %}
+
+	<!-- Wheel of donors -->
+	{% if todos_random[0] %}
+	<div id="wheel_of_donors">
+		<p style="transform: rotate(90deg); font-size: 200%;">⮞</p>
+		<table id="wheel_of_donors_table" class="">
+			<tr>
+				{% for todo in todos_random %}
+				<td>{{ todo["name"] }}</td>
+				{% endfor %}
+			</tr>
+		</table>
+		<p style="transform: rotate(-90deg); font-size: 200%;">⮞</p>
+	</div>
 	{% endif %}
+
+	<!-- Top donators -->
 	<table class="none" id="top_donators">
 		<th colspan=3>
 			<h2>Top donators</h2>
@@ -106,8 +158,7 @@
 
 	<hr>
 	<!-- <h2>Search</h2>
-	{% if todos[0] %}
-	<div span="right">
+		<div span="right">
 		<form action="/search" method="GET">
 			<table class="none" id="close">
 				<tr>
@@ -115,17 +166,19 @@
 					<td></td>
 					<td><big><b>Search Reference:</b></big></td>
 					<td><select name="refer" required>
-							<option value="name">Donor</option>
-							<option value="desc">Description</option>
-							<option value="date">Date</option>
-							<option value="pr">Priority</option>
-						</select></td>
+						<option value="name">Donor</option>
+						<option value="desc">Description</option>
+						<option value="date">Date</option>
+						<option value="pr">Priority</option>
+					</select></td>
 					<td><input type="text" name="key" placeholder="Search Task" size="15" /></td>
 					<td><button type="submit">Search</button></td>
 				</tr>
 			</table>
 		</form>
 	</div> -->
+	<!--  -->
+	{% if todos[0] %}
 	<table id="donor_list">
 		<tr class="title">
 			<td colspan=4>
